@@ -1,0 +1,23 @@
+{
+  "characters": [
+    {
+      "dir": "shapes",
+      "files": {
+        "idle": [
+          "idle_1.png"
+        ],
+        "walk": [
+          "walk_1.png",
+          "walk_2.png"
+        ]
+      },
+      "config": {
+        "name": "테스트 도형",
+        "scale": 1,
+        "speed": 70,
+        "fps": 4,
+        "count": 2
+      }
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+node_modules/
+out/*.mp4
+tests/shots*/
+tests/.profiles/
+.watch/
+*.token
+.DS_Store
+.plan-*

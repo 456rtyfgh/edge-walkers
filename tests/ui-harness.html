@@ -1,0 +1,37 @@
+<!doctype html>
+<!-- A 파트 단독 검증용 하네스: 엔진/main.js 없이 store·loader·io·demo·ui 만 올린다 (index.html 과 무관) -->
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ui harness</title>
+<link rel="stylesheet" href="../src/ui.css">
+<style>html,body{margin:0;height:100dvh;background:#1b1f2a;overflow:hidden}#log{position:fixed;top:8px;left:8px;color:#9f9;font:12px monospace;white-space:pre}</style>
+</head><body>
+<div id="log"></div>
+<div id="ew-ui-root"></div>
+<script src="../src/store.js"></script><script src="../src/loader.js"></script><script src="../src/io.js"></script>
+<script src="../src/demo-chars.js"></script><script src="../src/ui.js"></script>
+<script>
+const q = new URLSearchParams(location.search);
+const log = (m) => { document.getElementById('log').textContent += m + '\n'; };
+window.taps = [];
+window.engineBg = null;
+(async () => {
+  await EW.store.open();
+  const root = document.getElementById('ew-ui-root');
+  root.addEventListener('ew:tap', (e) => { taps.push(e.detail); log('tap ' + Math.round(e.detail.x) + ',' + Math.round(e.detail.y)); });
+  window.allDefs = [];
+  window.reload = async () => {
+    const demo = await EW.demo.getDemoChars();
+    const folder = await EW.loader.loadFolderChars(q.get('spritesBase') || 'sprites/');
+    const user = await Promise.all((await EW.store.listUserChars()).map(EW.store.storedToDef));
+    const map = new Map();
+    [...demo, ...folder, ...user].forEach((d) => map.set(d.id, d));
+    window.allDefs = [...map.values()];
+    window.activeDefs = EW.store.applyOverrides(allDefs, await EW.store.getSettings());
+    log('chars: ' + activeDefs.map((d) => d.id + '×' + d.count).join(','));
+  };
+  await reload();
+  EW.ui.init({ root, getEngine: () => ({ setBackground: (b) => { engineBg = b; document.body.style.background = b.type === 'color' ? b.color : b.type === 'gradient' ? `linear-gradient(${b.color},${b.color2})` : '#000'; } }), getAllDefs: () => allDefs, onChange: reload });
+  window.ready = true;
+})();
+</script></body></html>

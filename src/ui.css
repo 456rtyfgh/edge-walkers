@@ -1,0 +1,112 @@
+/* ui.css — 설정 패널·톱니·토스트 (root = #ew-ui-root) */
+.ew-ui-root {
+  position: fixed; inset: 0; z-index: 10;
+  touch-action: manipulation;
+  -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  font: 15px/1.4 -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Noto Sans KR', system-ui, sans-serif;
+  color: #eef0f8;
+}
+.ew-ui-root *, .ew-ui-root *::before, .ew-ui-root *::after { box-sizing: border-box; }
+.ew-gear {
+  position: absolute; right: calc(env(safe-area-inset-right, 0px) + 6px); bottom: calc(env(safe-area-inset-bottom, 0px) + 4px);
+  width: 40px; height: 40px; border: 0; border-radius: 50%; background: transparent;
+  color: #fff; font-size: 20px; opacity: 0.22; cursor: pointer; z-index: 2;
+}
+.ew-gear:hover, .ew-gear:focus-visible { opacity: 0.8; }
+.ew-open .ew-gear { display: none; }
+
+.ew-panel {
+  position: absolute; left: 0; right: 0; bottom: 0; max-height: 78dvh; overflow-y: auto; overscroll-behavior: contain;
+  background: rgba(20, 23, 34, 0.94); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border-radius: 20px 20px 0 0; border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding-bottom: env(safe-area-inset-bottom, 0px); z-index: 3;
+  touch-action: pan-y; -webkit-user-select: none; user-select: none;
+  animation: ew-up 0.22s ease-out;
+}
+.ew-panel[hidden] { display: none; }
+@keyframes ew-up { from { transform: translateY(24px); opacity: 0; } to { transform: none; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .ew-panel { animation: none; } }
+
+.ew-head {
+  position: sticky; top: 0; z-index: 1; display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 14px; background: rgba(20, 23, 34, 0.97); border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.ew-head strong { font-size: 16px; }
+.ew-body { padding: 4px 16px 20px; }
+.ew-body h3 { margin: 18px 0 8px; font-size: 13px; letter-spacing: 0.04em; color: #9aa3c4; font-weight: 600; }
+
+.ew-btn {
+  min-height: 44px; padding: 0 16px; border: 1px solid rgba(255, 255, 255, 0.18); border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08); color: inherit; font: inherit; cursor: pointer;
+}
+.ew-btn.small { min-height: 36px; padding: 0 12px; border-radius: 10px; font-size: 14px; }
+.ew-btn.primary { background: #6f7dff; border-color: #6f7dff; color: #fff; font-weight: 600; }
+.ew-btn.danger { background: rgba(255, 80, 90, 0.18); border-color: rgba(255, 90, 100, 0.55); color: #ffb3b8; }
+.ew-btn.block { display: block; width: 100%; margin-top: 10px; }
+.ew-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.ew-btn:focus-visible, .ew-gear:focus-visible, .ew-select:focus-visible, .ew-text:focus-visible { outline: 2px solid #9fb0ff; outline-offset: 2px; }
+.ew-btnrow { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0; }
+
+.ew-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.06); }
+.ew-grow { flex: 1; min-width: 0; }
+.ew-name { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ew-sub { font-size: 12.5px; color: #9aa3c4; }
+.ew-thumb { width: 48px; height: 48px; border-radius: 10px; background: rgba(255, 255, 255, 0.06); flex: none; }
+.ew-switch { width: 44px; height: 26px; accent-color: #6f7dff; flex: none; }
+
+.ew-field { display: flex; align-items: center; gap: 10px; margin: 10px 0; }
+.ew-field > span { width: 76px; flex: none; font-size: 14px; color: #c5cbe6; }
+.ew-field input[type='range'] { flex: 1; min-width: 0; accent-color: #6f7dff; height: 32px; }
+.ew-field output { width: 64px; text-align: right; font-variant-numeric: tabular-nums; font-size: 13px; }
+.ew-field input[type='color'] { width: 56px; height: 36px; border: 0; background: none; padding: 0; }
+.ew-text, .ew-select {
+  flex: 1; min-height: 44px; padding: 0 12px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.07); color: inherit; font: inherit; -webkit-user-select: text; user-select: text;
+}
+.ew-select option { color: #111; }
+
+.ew-previewbox { display: flex; flex-direction: column; align-items: center; gap: 8px; margin-top: 12px; }
+.ew-preview { width: 192px; height: 192px; border-radius: 14px; background: repeating-conic-gradient(rgba(255,255,255,0.07) 0 25%, rgba(255,255,255,0.02) 0 50%) 0 0 / 20px 20px; }
+.ew-action { margin-top: 14px; padding: 10px; border-radius: 14px; background: rgba(255, 255, 255, 0.04); }
+.ew-actionhead code { font-size: 12px; color: #9aa3c4; }
+.ew-strip { display: flex; gap: 6px; overflow-x: auto; padding: 8px 0; min-height: 60px; align-items: center; }
+.ew-frame { position: relative; flex: none; width: 56px; height: 56px; border-radius: 8px; background: rgba(255, 255, 255, 0.07); }
+.ew-frame img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.ew-x { position: absolute; top: -6px; right: -6px; width: 22px; height: 22px; border-radius: 50%; border: 0; background: #ff5a64; color: #fff; font-size: 14px; line-height: 22px; padding: 0; cursor: pointer; }
+.ew-idx { position: absolute; left: 3px; bottom: 1px; font-size: 10px; color: #fff; text-shadow: 0 0 3px #000; }
+
+.ew-msg { margin: 12px 0 4px; font-size: 13.5px; }
+.ew-err { color: #ff9aa0; } .ew-warn { color: #ffd98a; } .ew-ok { color: #8fe3b5; }
+
+.ew-toast {
+  position: absolute; left: 50%; bottom: calc(env(safe-area-inset-bottom, 0px) + 84px); transform: translateX(-50%);
+  max-width: 88%; padding: 10px 16px; border-radius: 12px; background: rgba(0, 0, 0, 0.82); color: #fff; font-size: 14px;
+  opacity: 0; pointer-events: none; transition: opacity 0.2s; z-index: 4;
+}
+.ew-toast.show { opacity: 1; }
+
+/* ── 공유 링크 ── */
+.ew-check { display: flex; align-items: center; gap: 10px; min-height: 44px; }
+.ew-check input { width: 22px; height: 22px; accent-color: #6f7dff; flex: none; }
+.ew-share-link { width: 100%; margin: 8px 0; }
+.ew-progress { margin: 12px 0 4px; font-size: 14px; color: #c5cbe6; }
+
+/* ── 홈 화면 추가 안내 (document.body 직속) ── */
+.ew-a2hs {
+  position: fixed; inset: 0; z-index: 50; display: flex; align-items: flex-end; justify-content: center;
+  padding: calc(env(safe-area-inset-top, 0px) + 16px) 16px calc(env(safe-area-inset-bottom, 0px) + 16px);
+  background: rgba(8, 10, 18, 0.62); color: #eef0f8;
+  font: 15px/1.5 -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Noto Sans KR', system-ui, sans-serif;
+}
+.ew-a2hs *, .ew-a2hs *::before { box-sizing: border-box; }
+.ew-a2hs-box { width: 100%; max-width: 420px; padding: 20px 18px 16px; border-radius: 20px; background: rgba(28, 32, 48, 0.98); border: 1px solid rgba(255, 255, 255, 0.14); }
+.ew-a2hs-title { margin: 0 0 10px; font-size: 18px; }
+.ew-a2hs-steps { margin: 0 0 8px; padding-left: 22px; }
+.ew-a2hs-steps li { margin: 6px 0; }
+.ew-a2hs-ico { vertical-align: -5px; color: #9fb0ff; }
+.ew-a2hs-p { margin: 6px 0; }
+.ew-a2hs-p.small { font-size: 13px; color: #9aa3c4; }
+.ew-a2hs-row { display: flex; gap: 8px; justify-content: flex-end; margin-top: 12px; }
+.ew-a2hs .ew-btn { min-height: 44px; padding: 0 16px; border: 1px solid rgba(255, 255, 255, 0.18); border-radius: 12px; background: rgba(255, 255, 255, 0.08); color: inherit; font: inherit; }
+.ew-a2hs .ew-btn.primary { background: #6f7dff; border-color: #6f7dff; color: #fff; font-weight: 600; }

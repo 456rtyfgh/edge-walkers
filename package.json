@@ -1,0 +1,21 @@
+{
+  "name": "edge-walkers",
+  "version": "1.1.0",
+  "private": true,
+  "type": "module",
+  "description": "가장자리를 따라 걷는 캐릭터 폰 배경화면",
+  "scripts": {
+    "build": "node build.mjs",
+    "serve": "node scripts/serve.mjs",
+    "record": "node scripts/record.mjs",
+    "icons": "node scripts/make-icons.mjs",
+    "install-webkit": "node scripts/install-browser.mjs webkit",
+    "test:engine": "node tests/engine.spec.mjs",
+    "test:settings": "node tests/settings.spec.mjs",
+    "test:pack": "node tests/pack.spec.mjs",
+    "test": "node build.mjs && node tests/engine.spec.mjs && node tests/settings.spec.mjs && node tests/pack.spec.mjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.48.0"
+  }
+}

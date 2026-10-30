@@ -1,0 +1,80 @@
+{
+  "characters": [
+    {
+      "dir": "ghost",
+      "files": {
+        "idle": [
+          "idle_1.png",
+          "idle_2.png"
+        ],
+        "jump": [
+          "jump_1.png",
+          "jump_2.png",
+          "jump_3.png"
+        ],
+        "look": [
+          "look_1.png",
+          "look_2.png"
+        ],
+        "sit": [
+          "sit_1.png"
+        ],
+        "sleep": [
+          "sleep_1.png",
+          "sleep_2.png"
+        ],
+        "walk": [
+          "walk_1.png",
+          "walk_2.png",
+          "walk_3.png",
+          "walk_4.png"
+        ]
+      },
+      "config": {
+        "name": "꼬마 유령",
+        "scale": 1,
+        "speed": 50,
+        "fps": 6,
+        "count": 1
+      }
+    },
+    {
+      "dir": "slime",
+      "files": {
+        "idle": [
+          "idle_1.png",
+          "idle_2.png"
+        ],
+        "jump": [
+          "jump_1.png",
+          "jump_2.png",
+          "jump_3.png"
+        ],
+        "look": [
+          "look_1.png",
+          "look_2.png"
+        ],
+        "sit": [
+          "sit_1.png"
+        ],
+        "sleep": [
+          "sleep_1.png",
+          "sleep_2.png"
+        ],
+        "walk": [
+          "walk_1.png",
+          "walk_2.png",
+          "walk_3.png",
+          "walk_4.png"
+        ]
+      },
+      "config": {
+        "name": "말랑 떡 슬라임",
+        "scale": 1,
+        "speed": 58,
+        "fps": 8,
+        "count": 1
+      }
+    }
+  ]
+}
